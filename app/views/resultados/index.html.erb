@@ -1,0 +1,86 @@
+<center>
+    <h1>Resultados</h1>
+</center>
+<hr>
+<% @palabras.each do |palabra| %>
+   <div class="col-md-5">
+    <h2><%=palabra.palabra%></h2>       
+        <%
+respuestas2 = Respuestum.where(:palabra => palabra.id).group(:respuesta)
+            clasificaciones = Respuestum.where(:palabra => palabra.id).order(:clasificacion).group(:clasificacion).pluck(:clasificacion)
+            clasificaciones_desc = Respuestum.where(:palabra => palabra.id).order(clasificacion: :desc).group(:clasificacion).pluck(:clasificacion)
+            tabla = Array.new
+            resultados = Array.new
+            respuestas2.each do |respuesta2|
+                cantidad = 0
+                clasificaciones.each do |clasificacion|
+                    
+                    cr = Respuestum.where("respuesta = ? AND palabra =? AND clasificacion =?", respuesta2.respuesta, palabra.id, clasificacion).count
+                    posicion = clasificacion - 1;
+                    cantidad += (cr * clasificaciones_desc[posicion])
+                    tabla << {:respuesta => respuesta2.respuesta, :clasificacion => clasificacion, :cantidad => (cr * clasificaciones_desc[posicion])}
+        %>
+    
+
+        <% end 
+resultados << {:palabra => respuesta2.respuesta, :valor => cantidad}
+           end %> 
+
+
+<% 
+pal = Array.new
+rcl = Array.new
+resultados.each do |r|
+    pal << r[:palabra]
+    rcl << r[:valor].to_i
+    %>
+<%
+end
+
+p1 = pal.zip(rcl)
+p1 = p1.sort_by{|x,y|y}
+np = Array.new
+10.times do |i|
+    np << p1.max_by(&:last)
+    p1.delete(p1.max_by(&:last))
+end
+rs = Array.new
+respuestas2.each do |r2|
+    rs << r2.respuesta
+end
+%>
+
+    <canvas id="canvas" height="450" width="450"></canvas>
+</div>
+
+<script>
+	var radarChartData = {
+		labels: [<%
+10.times do |p|%>
+            "<%= np[p][0].capitalize%>",  
+<%end%>],
+		datasets: [
+			{
+				label: "My First dataset",
+				fillColor: "rgba(220,220,220,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: [<%
+10.times do |p|%>
+  <%= np[p][1]%>,  
+<%end%>]
+			}
+		]
+	};
+	window.onload = function(){
+		window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+			responsive: true
+		});
+	}
+	</script>
+<% end %>
+
+

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  palabra: MyString
+  cuestionario: 1
+
+two:
+  palabra: MyString
+  cuestionario: 1

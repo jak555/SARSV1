@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  edad: 1
+  sexo: false
+  estado: 1
+  hijos: 1
+  nacionalidad: 1
+  nivel: 1
+  universidad: 1
+  semestre: 1
+  idu: MyString
+
+two:
+  edad: 1
+  sexo: false
+  estado: 1
+  hijos: 1
+  nacionalidad: 1
+  nivel: 1
+  universidad: 1
+  semestre: 1
+  idu: MyString

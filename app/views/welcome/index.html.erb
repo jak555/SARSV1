@@ -1,0 +1,115 @@
+<div class="alert alert-info alert-dismissable">
+  <strong>Instrucciones: </strong>Complete cada uno de los campos que se le piden a continuación para avanzar.  
+</div>
+
+<div class="row">
+<%= form_tag({:controller => "welcome", :action => "index"}, :name => "formulario", :id => "formulario", :method => "get", :class => "form-horizontal") do %>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Edad: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= text_field_tag 'edad', "", :class => "form-control", :maxlength => 2 , :onkeypress => "return justNumbers(event)", :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Sexo: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= select_tag :sexo, options_for_select([['Masculino', 'M'], ['Femenino', 'F']]), :class => "form-control",  :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Estado Civil: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= select_tag :estado, options_for_select([['Solter@', '1'], ['Casad@', '2'], ['Divorciad@', '3'], ['Viud@', '4'], ['Separad@', '5']]), :class => "form-control", :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Hijos: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= text_field_tag :hijos, "", :class => "form-control", :maxlength => 2, :required => true, :onkeypress => "return justNumbers(event)" %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Nacionalidad: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= select_tag :nacionalidad, options_from_collection_for_select(@paises, "id", "nombre"), :class => "form-control",  :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Nivel Socioeconómico: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= select_tag :nivel, options_for_select([['Alto', '1'], ['Medio', '2'], ['Bajo', '3']]), :class => "form-control", :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Universidad: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= select_tag :uni, options_from_collection_for_select(@unis, "id", "nombre"), :class => "form-control",  :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Nivel educativo: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= select_tag :educ, options_for_select([['Bachillerato', 'Bachillerato'], ['Licenciatura', 'Licenciatura'], ['Especialidad', 'Especialidad'], ['Maestria', 'Maestria'], ['Doctorado', 'Doctorado']]), :onclick => "activa(this.value)", :class => "form-control", :required => true %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Semestre / Cuatrimestre: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= text_field_tag 'sem', "", :class => "form-control", :maxlength => 2, :required => true, :onkeypress => "return justNumbers(event)" %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Carrera: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= text_field_tag 'carrera', "", :class => "form-control", :required => true, :name => "carrera", :disabled => "true", :onkeypress => "return Letras(event)" %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2">
+        <%= label_tag 'Grado a obtener: ' %>
+    </div>
+    <div class="col-sm-2">
+        <%= text_field_tag 'gradoobt', "", :class => "form-control", :required => true, :name => "gradoobt", :onkeypress => "return Letras(event)" %>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-4">
+        <br>
+    <%= submit_tag 'Clic para pasar a la siguiente', :class => "btn btn-block btn-primary" %>
+            
+    </div>    
+</div>
+
+<%= @idu %>
+<% end %>
+<script>
+function justNumbers(e)
+{
+var keynum = window.event ? window.event.keyCode : e.which;
+if ((keynum == 8) || (keynum == 46))
+return true;
+ 
+return /\d/.test(String.fromCharCode(keynum));
+}
+</script>
+</div>

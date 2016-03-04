@@ -1,0 +1,22 @@
+<div class="alert alert-info alert-dismissable">
+  <strong>Instrucciones: </strong> Jerarquice cada una de las palabras que escribió del 1 a 10, donde 1 representa la palabra con mayor significado al concepto estímulo y 10 la menor, cuidando no repetir los números.  
+</div>
+<% palabras = session[:preguntas]%>
+<%= form_tag({:controller => "preguntas", :action => "guardar"}, :name => "formulario1", :id => "formulario1", :method => "POST", :class => "form-horizontal") do %>
+<% palabras.each do |palab| %>
+   <div class="form-group">
+        <div class="col-sm-2">
+            <%= label_tag palab %>
+        </div>
+        <div class="col-sm-2">
+            <%= number_field_tag 'orden[]', "", :class => "form-control", :min => 1, :max => 10,:onkeypress => "return Numeros(event)", :required => true, :onBlur => "comprobar(this.value)", :maxlength => 2 %>
+        </div>
+    </div>
+<% end %>
+<div class="form-group">
+    <div class="col-sm-4">
+        <br>
+    <%= submit_tag 'Clic para pasar a la siguiente', :class => "btn btn-block btn-primary", :name => "boton", :id => "boton" %>
+    </div>
+</div>
+<% end %>

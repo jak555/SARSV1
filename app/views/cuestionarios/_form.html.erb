@@ -1,0 +1,34 @@
+<div class="col-md-6">
+ <%= form_for(@cuestionario) do |f| %>
+  <% if @cuestionario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cuestionario.errors.count, "error") %> prohibited this cuestionario from being saved:</h2>
+
+      <ul>
+      <% @cuestionario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :class => "form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :prefijo %><br>
+    <%= f.text_field :prefijo, :class => "form-control"  %>
+  </div>
+  <div class="field">
+      <%= f.label :desc, "Descripción" %><br>
+    <%= f.text_field :desc, :class => "form-control" %>
+  </div>
+  <div class="field">
+      <%= f.label :respuestas %><br>
+      <%= f.number_field :respuestas, :class => "form-control" %>
+  </div>
+  <div class="actions">
+      <%= f.submit :class => "btn btn-sm btn-primary" %>
+  </div>
+<% end %>

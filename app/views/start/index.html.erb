@@ -1,0 +1,13 @@
+<center>
+<div class="jumbotron">
+  <h2>Bienvenido al Sistema Administrador de Redes Semanticas (SARS)</h2>
+    <div class="pull-right"><%= image_tag "/Telematica.jpg", :alt => "telematica", :title => "telematica", :class => "img-thumbnail", :width => 116, :height => 164  %></div>
+    <div class="pull-left"><%= image_tag "/psi.gif", :alt => "telematica", :title => "telematica", :class => "img-thumbnail", :width => 116, :height => 164  %></div>
+    <br>
+    <h4>Este sistema permite la aplicación automática de redes semánticas naturales. Le pedimos leer atentamente y seguir las instrucciones</h4>
+    <h4>¡Muchas gracias por su participación!</h4>
+    <%if !params[:id].nil?%>
+        <p><%= button_to 'Iniciar', welcome_index_path, :class => "btn btn-primary btn-lg", :name => "boton", :id => "boton" %></p>
+    <%end%>
+</div>
+</center>

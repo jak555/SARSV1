@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @paise.nombre %>
+</p>
+
+<%= link_to 'Editar', edit_paise_path(@paise), :class => "btn btn-warning" %> |
+<%= link_to 'Regresar', paises_path, :class => "btn btn-danger" %>

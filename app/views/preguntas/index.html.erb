@@ -1,0 +1,23 @@
+<div class="alert alert-info alert-dismissable">
+  <strong>Instrucciones: </strong> a continuación escriba 10 palabras que asocie libremente al siguiente concepto, cuidando que ninguna palabra se repita para poder continuar. Favor de utilizar MINÚSCULAS.
+</div>
+
+<% palabra = @pal[session[:cont].to_i] %>
+<h1><center><%= palabra.palabra %></center></h1><hr>
+<% session[:pal] = palabra.id %>
+<%= form_tag({:controller => "preguntas", :action => "ordenar"}, :name => "formulario1", :id => "formulario1", :method => "POST", :class => "form-horizontal") do %>
+<% for i in 1..@cantidad %>
+    <div class="form-group">
+        <div class="col-sm-2">
+            <%= text_field_tag 'pregunta[]', "", :id => "pregunta1",:maxlength => 255, :required => true, :onkeypress => "return Letras(event)", :onBlur => "comprobar1(this.form)", :class => "form-control" %>
+        </div>
+    </div>
+<% end %>
+<div class="form-group">
+    <div class="col-sm-4">
+        <br>
+    <%= submit_tag 'Clic para pasar a la siguiente', :class => "btn btn-block btn-primary", :name => "button", :id => "button" %>
+            
+    </div>    
+</div>
+<% end %>

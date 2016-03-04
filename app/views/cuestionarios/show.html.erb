@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @cuestionario.nombre %>
+</p>
+
+<p>
+  <strong>Prefijo:</strong>
+  <%= @cuestionario.prefijo %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @cuestionario.desc %>
+</p>
+
+<%= link_to 'Edit', edit_cuestionario_path(@cuestionario), :class => "btn btn-sm btn-warning", :role => "button" %> |
+<%= link_to 'Back', cuestionarios_path, :class => "btn btn-sm btn-success", :role => "button" %>

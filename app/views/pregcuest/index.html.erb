@@ -1,0 +1,24 @@
+<div class="col-md-6 well">
+    <h2>Agregar palabras</h2>
+    <hr>
+    <form method="get" action="/palabras/show">
+        <div id="dynamicInput">
+            <label>Palabra estímulo 1</label><br><input type="text" class="form-control" name="myInputs[]">
+        </div>
+        <hr>
+        <input type="button" class="btn btn-success" value="Agregar" onClick="addInput('dynamicInput');">
+        <input type="submit" class="btn btn-primary" value="Terminar">
+    </form>
+</div>
+<div class="col-md-6 well">
+   <h2>Palabras en el cuestionario</h2>
+   <hr>
+    <%@pal.each do |existente|%>
+    <div class="col-md-10">
+        <%= text_field 'palabra', "",:maxlength => 255, :disabled => true, :class => "form-control", :value => existente.palabra %>    
+    </div>
+    <div class="col-md-2">
+        <%= link_to content_tag(:span, '', class:"glyphicon glyphicon-remove")+'', {:controller => "pregcuest", :action => "delete", :id => existente.id}, :class => "btn btn-danger" %>
+    </div>
+    <%end%>
+</div>
